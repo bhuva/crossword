@@ -1,0 +1,62 @@
+/*
+Version: v1.01
+*/
+
+@font-face {
+font-family: "icomoon";
+src: url("icomoon.ttf");
+}
+@font-face {
+font-family: 'Golos';
+src: url('Golos-Text_Regular.ttf');
+}
+
+
+
+* { 
+  /*font-family: 'Golos' !important;*/
+  font-weight: 400 !important; 
+}
+
+
+
+/*  CRSWRD  */
+
+.xlv-wide-box.xlv-saving, 
+.xlv-preamble,
+.xlv-wide-box.xlv-small-print,
+.xlv-curr-clue-label,
+.xlv-frame hr,
+#xlv1-title { display: none; }
+/* */
+
+#xlv1-curr-clue-text      { padding-left: 5px; }
+.xlv-clues.xlv-clues-flex { padding-top: 2rem; }
+
+.xlv-clear-area { height: 72px; }
+#xlv1-frame .xlv-curr-clue {
+  background-color: #f1f9fc !important;
+  padding: 1rem 1rem 1.5rem !important;
+  top: -2.2rem !important;
+  left: 0 !important;
+  position: relative;
+  }
+
+
+.xlv-grid-parent-centerer { text-align: left; width: 100%;}
+.xlv-clues-flex, .xlv-grid-and-clues-flex { display: block; }
+
+.xlv-grid-panel, .xlv-clues-flex {width: 100%;}
+.xlv-wide-box  { width: 100% !important;}
+.text-block table, .text-block table td, .text-block table th { border: none; }
+.xlv-clues-box.xlv-clues-label {font-size: 128%;font-weight: 400;padding-top: 2rem;}
+.text-block table td { color: #000;}
+
+
+@media (max-width: 991px) {
+.aside { display: none; }
+}
+
+@media (max-width: 500px) {
+#xlv1-grid-parent { transform: scale(0.9); }
+}

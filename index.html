@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="exolve-m.css?v1.39"/>
+<script src="exolve-m.js?v1.39"></script>
+
+<link rel="stylesheet" type="text/css" href="mine.css?v1.01"/>
+
+<title>_кроссворд_тест_</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div style="height: 4rem;"></div>
+<script>
+
+
+// cell border
+function insertBackgroundForLightCells(puz, colorname) {
+
+  for (let row = 0; row < puz.gridHeight; row++) {
+    for (let col = 0; col < puz.gridWidth; col++) {
+      if (!puz.grid[row][col].isLight) { continue; }
+
+      const cellLeft = puz.cellLeftPos(col, 0);
+      const cellTop = puz.cellTopPos(row, 0);
+      const thisW = puz.cellW + 2*puz.GRIDLINE;
+      const thisH = puz.cellH + 2*puz.GRIDLINE;
+
+      const rect = 
+        document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+
+      rect.setAttributeNS(null, 'x', cellLeft);
+      rect.setAttributeNS(null, 'y', cellTop);
+      rect.setAttributeNS(null, 'width', thisW);
+      rect.setAttributeNS(null, 'height', thisH);
+      rect.setAttributeNS(null, 'fill', colorname);
+
+      puz.background.after(rect);
+    }
+  }
+}
+
+
+
+function customizeExolve(puz) {
+
+  insertBackgroundForLightCells(puz, 'black'); // cell border
+
+// проверка ввода /???
+  puz.afterInput = function(evt) {
+    let allEntered = (this.activeCells.length > 0);
+    for (let cell of this.activeCells) {
+      const row = cell[0];
+      const col = cell[1];
+      const letter = this.grid[row][col].currLetter;
+      // if (letter < 'A' || letter > 'Z') { — эта проверка не нужна
+      //   allEntered = false;
+      //   break;
+      // }
+    }
+    if (allEntered) {
+      this.checkCurr();
+      //console.log('right!');
+    }
+  }
+  puz.gridInput.addEventListener('input', puz.afterInput.bind(puz));
+  
+}
+
+createExolve(`
+======REPLACE WITH YOUR PUZZLE BELOW======
+
+exolve-begin
+  exolve-id: test-russian
+  exolve-title:    Кроссворд тест
+  # exolve-setter:  Алексей Неумоин
+  exolve-copyright: 2022 ПМ
+  exolve-width:   17
+  exolve-height:  17
+  exolve-language: ru Cyrillic
+  exolve-relabel:
+    across-label: По горизонтали:
+    down-label: По вертикали:
+    clear: Очистить это
+    clear-all: Очистить все!
+    crossword-id: cross1
+  exolve-prelude:
+   Please use a suitable mechanism for entering Cyrillic letters, such as Google Input Tools. This also test special chars (#@012) coexisting with Russian.
+  exolve-option: allow-chars:#@012 colour-background:#fff colour-button:#17a09c colour-button-hover:#2c7c7a colour-active:#f1f9fc colour-active-clue:#f1f9fc colour-input:#bee9f9
+  exolve-grid:
+    ..........Ц......
+    ......ЛИСТВЕННИЦА
+    ..........Е......
+    .......БАКТЕРИИ..
+    ......П...К......
+    .....ВОДОРОСЛЬ...
+    ......Ч...В.И....
+    ......К...Ы.Ш....
+    ..СПОРА...Е.А....
+    ...О........Й....
+    ГРИБЫ...КОРЕНЬ...
+    ...Е........И....
+    ...Г....КЛЕТКА...
+    .........И.......
+    .........СЕМЯ....
+    ......СВЕТ.О.....
+    ...........Х.....
+  exolve-across:
+    2 Порода хвойного дерева, которое сбрасывает хвою, как лиственные деревья листья. (11)
+    3 Одноклеточные микроорганизмы, размножающиеся путем своего деления.  (8)
+    5 Низшее растение, содержащее хлорофилл, обитающее в водной среде.  (9)
+    7 При помощи чего размножается папоротник?   (5)
+    9 Живой организм, размножающийся либо спорами, либо мицелиями.  (5)
+    10  Опорный вегетативный орган растения, поглощающий воду и минеральные вещества.
+    11  Элементарная единица строения и жизнедеятельности всех организмов.  (6)
+    13  С помощью чего размножаются голосеменные растения?  (4)
+    15  При наличии чего происходит процесс фотосинтеза?  (4)
+  exolve-down:
+    1 Название растений, у которых семя защищено (покрыто) плодом.  (9)
+    4 Зачаточный побег вегетативных организмов.  (5)
+    6 Живые организмы, образованные симбиозом грибов и водорослей.  (8)
+    8 Орган, состоящий из стебля, листьев и почек.  (5)
+    12  Вегетативный орган, осуществляющий воздушное питание растений.  (4)
+    14  Высшее споровое растение, закрепляющееся в почве ризоидами.  (3)
+exolve-end
+
+======REPLACE WITH YOUR PUZZLE ABOVE======
+`);
+</script>
+</body>
+</html>
